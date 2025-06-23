@@ -38,7 +38,7 @@ metadata:
   namespace: nginx-network
   name: default-deny-all-ingress
 spec:
-  podSelector: {}  # Применяется ко всем подам
+  podSelector: {}
   policyTypes:
     - Ingress
-  ingress: []  # Никакие входящие подключения не разрешены
+  ingress: []
