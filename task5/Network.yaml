@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  namespace: nginx-network
+  name: non-admin-api-allow
+spec:
+  podSelector:
+    matchLabels:
+      app: back-end-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: front-end
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  namespace: nginx-network
+  name: admin-api-allow
+spec:
+  podSelector:
+    matchLabels:
+      app: admin-back-end-api
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: admin-front-end
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  namespace: nginx-network
+  name: default-deny-all-ingress
+spec:
+  podSelector: {}  # Применяется ко всем подам
+  policyTypes:
+    - Ingress
+  ingress: []  # Никакие входящие подключения не разрешены
