@@ -16,11 +16,11 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: client-admin-binding
-  namespace: smart
+  namespace: client
 subjects:
   - kind: ServiceAccount
     name: client-admin
-    namespace: smart
+    namespace: client
 roleRef:
   kind: Role
   name: client-admin
